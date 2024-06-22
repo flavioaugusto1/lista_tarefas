@@ -26,37 +26,64 @@ class MyApp extends StatelessWidget {
           ),
           backgroundColor: Colors.blueAccent,
         ),
-        body: Container(
-          child: Stack(
+        body: const Padding(
+          padding: EdgeInsets.all(18),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                height: 140,
-                color: Colors.blueAccent,
+              Task(
+                taskName: "Aprender flutter",
               ),
-              Container(
-                height: 100,
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      height: 100,
-                      width: 72,
-                      color: Colors.black26,
-                    ),
-                    Text("Aprendendo Flutter"),
-                    ElevatedButton(
-                        onPressed: () {}, child: Icon(Icons.arrow_drop_up))
-                  ],
-                ),
-              )
+              Task(
+                taskName: "Aprender dart",
+              ),
+              Task(
+                taskName: "Conseguir a primeira vaga mobile",
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+              ),
             ],
           ),
         ),
-        floatingActionButton: FloatingActionButton(onPressed: () {
-          print("Hello World!");
-        }),
       ),
+    );
+  }
+}
+
+class Task extends StatelessWidget {
+  final String taskName;
+  const Task({
+    required this.taskName,
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          height: 140,
+          color: Colors.blueAccent,
+        ),
+        Container(
+          height: 100,
+          color: Colors.white,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: 100,
+                width: 72,
+                color: Colors.black26,
+              ),
+              Text(taskName),
+              ElevatedButton(
+                  onPressed: () {}, child: const Icon(Icons.arrow_drop_up))
+            ],
+          ),
+        )
+      ],
     );
   }
 }
