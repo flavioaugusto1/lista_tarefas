@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Lista de tarefas',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
-        useMaterial3: true,
+        useMaterial3: false,
       ),
       home: Scaffold(
         appBar: AppBar(
@@ -26,10 +27,9 @@ class MyApp extends StatelessWidget {
           ),
           backgroundColor: Colors.blueAccent,
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(18),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Padding(
+          padding: EdgeInsets.all(10),
+          child: ListView(
             children: [
               Task(
                 taskName: "Aprender flutter",
@@ -39,6 +39,21 @@ class MyApp extends StatelessWidget {
               ),
               Task(
                 taskName: "Conseguir a primeira vaga mobile",
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
               ),
               Task(
                 taskName: "Aprender uma das tecnologias nativas",
@@ -53,37 +68,52 @@ class MyApp extends StatelessWidget {
 
 class Task extends StatelessWidget {
   final String taskName;
-  const Task({
+
+  Task({
     required this.taskName,
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 140,
-          color: Colors.blueAccent,
-        ),
-        Container(
-          height: 100,
-          color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                height: 100,
-                width: 72,
-                color: Colors.black26,
-              ),
-              Text(taskName),
-              ElevatedButton(
-                  onPressed: () {}, child: const Icon(Icons.arrow_drop_up))
-            ],
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Stack(
+        children: [
+          Container(
+            height: 140,
+            color: Colors.blueAccent,
           ),
-        )
-      ],
+          Container(
+            height: 100,
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 100,
+                  width: 72,
+                  color: Colors.black26,
+                ),
+                Container(
+                  width: 200,
+                  child: Text(
+                    taskName,
+                    style: TextStyle(
+                      fontSize: 18,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () {},
+                  child: Icon(Icons.arrow_drop_up),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
