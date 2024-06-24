@@ -103,23 +103,37 @@ class _TaskState extends State<Task> {
         children: [
           Container(
             height: 140,
-            color: Colors.blueAccent,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.blueAccent,
+            ),
           ),
           Column(
             children: [
               Container(
                 height: 100,
-                color: Colors.white,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.white,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       height: 100,
                       width: 72,
-                      color: Colors.black26,
-                      child: Image.network(
-                        widget.image,
-                        fit: BoxFit.cover,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(10),
+                        ),
+                        color: Colors.black26,
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.network(
+                          widget.image,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
                     Column(
