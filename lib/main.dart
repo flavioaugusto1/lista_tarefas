@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         appBar: AppBar(
+          leading: Container(),
           title: const Text(
             "Tarefas",
             style: TextStyle(
@@ -125,13 +126,27 @@ class _TaskState extends State<Task> {
                         ),
                       ),
                     ),
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          incrementLevel();
-                        });
-                      },
-                      child: Icon(Icons.arrow_drop_up),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 10),
+                      child: Container(
+                        height: 52,
+                        width: 52,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            setState(() {
+                              incrementLevel();
+                            });
+                          },
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Icon(Icons.arrow_drop_up),
+                              Text("UP", style: TextStyle(fontSize: 12)),
+                            ],
+                          ),
+                        ),
+                      ),
                     )
                   ],
                 ),
