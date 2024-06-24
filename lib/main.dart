@@ -81,6 +81,17 @@ class Task extends StatefulWidget {
 class _TaskState extends State<Task> {
   int nivel = 0;
 
+  incrementLevel() {
+    if (nivel >= 15) {
+      return;
+    }
+    nivel++;
+  }
+
+  incrementProgressBar() {
+    return nivel / 10;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -108,7 +119,7 @@ class _TaskState extends State<Task> {
                       width: 200,
                       child: Text(
                         widget.taskName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -117,7 +128,7 @@ class _TaskState extends State<Task> {
                     ElevatedButton(
                       onPressed: () {
                         setState(() {
-                          nivel++;
+                          incrementLevel();
                         });
                       },
                       child: Icon(Icons.arrow_drop_up),
@@ -125,13 +136,30 @@ class _TaskState extends State<Task> {
                   ],
                 ),
               ),
-              Text(
-                "Nível: $nivel",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                ),
-              )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      width: 200,
+                      child: LinearProgressIndicator(
+                        value: incrementProgressBar(),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      "Nível: $nivel",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           )
         ],
