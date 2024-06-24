@@ -66,13 +66,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String taskName;
 
   Task({
     required this.taskName,
     super.key,
   });
+
+  @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -84,33 +91,48 @@ class Task extends StatelessWidget {
             height: 140,
             color: Colors.blueAccent,
           ),
-          Container(
-            height: 100,
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  height: 100,
-                  width: 72,
-                  color: Colors.black26,
-                ),
-                Container(
-                  width: 200,
-                  child: Text(
-                    taskName,
-                    style: TextStyle(
-                      fontSize: 18,
-                      overflow: TextOverflow.ellipsis,
+          Column(
+            children: [
+              Container(
+                height: 100,
+                color: Colors.white,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 100,
+                      width: 72,
+                      color: Colors.black26,
                     ),
-                  ),
+                    Container(
+                      width: 200,
+                      child: Text(
+                        widget.taskName,
+                        style: TextStyle(
+                          fontSize: 18,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          nivel++;
+                        });
+                      },
+                      child: Icon(Icons.arrow_drop_up),
+                    )
+                  ],
                 ),
-                ElevatedButton(
-                  onPressed: () {},
-                  child: Icon(Icons.arrow_drop_up),
-                )
-              ],
-            ),
+              ),
+              Text(
+                "Nível: $nivel",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                ),
+              )
+            ],
           )
         ],
       ),
