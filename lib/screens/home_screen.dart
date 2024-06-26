@@ -39,28 +39,42 @@ class _HomeState extends State<Home> {
             children: const [
               Task(
                 taskName: "Aprender flutter",
-                image:
-                    "https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                image: "../assets/images/dart.png",
                 difficulty: 3,
               ),
               Task(
                 taskName: "Aprender dart",
-                image:
-                    "https://img.icons8.com/?size=100&id=7AFcZ2zirX6Y&format=png&color=000000",
+                image: "../assets/images/flutter.png",
                 difficulty: 3,
               ),
               Task(
                 taskName: "Conseguir a primeira vaga mobile",
-                image:
-                    "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                image: "../assets/images/job.png",
                 difficulty: 5,
               ),
               Task(
                 taskName: "Aprender uma das tecnologias nativas",
-                image:
-                    "https://img.icons8.com/?size=100&id=24465&format=png&color=000000",
+                image: "../assets/images/swift.png",
                 difficulty: 4,
               ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+                image: "../assets/images/swift.png",
+                difficulty: 4,
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+                image: "../assets/images/swift.png",
+                difficulty: 4,
+              ),
+              Task(
+                taskName: "Aprender uma das tecnologias nativas",
+                image: "../assets/images/swift.png",
+                difficulty: 4,
+              ),
+              SizedBox(
+                height: 80,
+              )
             ],
           ),
         ),
