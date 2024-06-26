@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:meu_primeiro_projeto/difficulty.dart';
 
 void main() {
   runApp(MyApp());
@@ -59,6 +58,12 @@ class _MyAppState extends State<MyApp> {
                   image:
                       "https://img.icons8.com/?size=100&id=7AFcZ2zirX6Y&format=png&color=000000",
                   difficulty: 3,
+                ),
+                Task(
+                  taskName: "Conseguir a primeira vaga mobile",
+                  image:
+                      "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                  difficulty: 5,
                 ),
                 Task(
                   taskName: "Conseguir a primeira vaga mobile",
@@ -173,44 +178,8 @@ class _TaskState extends State<Task> {
                             ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: (widget.difficulty >= 1)
-                                  ? Colors.black
-                                  : Colors.black45,
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: (widget.difficulty >= 2)
-                                  ? Colors.black
-                                  : Colors.black45,
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: (widget.difficulty >= 3)
-                                  ? Colors.black
-                                  : Colors.black45,
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: (widget.difficulty >= 4)
-                                  ? Colors.black
-                                  : Colors.black45,
-                            ),
-                            Icon(
-                              Icons.star,
-                              size: 15,
-                              color: (widget.difficulty >= 5)
-                                  ? Colors.black
-                                  : Colors.black45,
-                            ),
-                          ],
+                        Difficulty(
+                          difficultyLevel: widget.difficulty,
                         ),
                       ],
                     ),
