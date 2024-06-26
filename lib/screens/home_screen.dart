@@ -36,11 +36,11 @@ class _HomeState extends State<Home> {
           opacity: opacity ? 1 : 0,
           duration: const Duration(milliseconds: 400),
           child: ListView(
-            children: const [
+            children: [
               Task(
                 taskName: "Aprender flutter",
                 image: "../assets/images/dart.png",
-                difficulty: 3,
+                difficulty: 1,
               ),
               Task(
                 taskName: "Aprender dart",

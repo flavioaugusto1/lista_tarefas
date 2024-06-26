@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/components/difficulty.dart';
 
@@ -6,7 +8,7 @@ class Task extends StatefulWidget {
   final String image;
   final int difficulty;
 
-  const Task({
+  Task({
     required this.taskName,
     required this.image,
     required this.difficulty,
@@ -19,14 +21,50 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+  Color handleColor = Colors.blue;
 
   incrementLevel() {
     nivel++;
   }
 
+  changeProgessBar() {
+    final _random = new Random();
+    Color blueColor = Colors.blue;
+    Color blackColor = Colors.black;
+    Color redColor = Colors.red;
+    Color greenColor = Colors.green;
+    Color purpleColor = Colors.purple;
+    Color brownColor = Colors.brown;
+    Color pinkColor = Colors.pink;
+
+    List<Color> listColors = [
+      blueColor,
+      blackColor,
+      redColor,
+      greenColor,
+      purpleColor,
+      brownColor,
+      pinkColor,
+    ];
+    handleColor = listColors[_random.nextInt(listColors.length)];
+
+    return handleColor;
+  }
+
+  resetProgressBar() {
+    return nivel = 0;
+  }
+
   incrementProgressBar() {
     if (widget.difficulty > 0) {
-      return (nivel / widget.difficulty) / 10;
+      double finalDifficulty = (nivel / widget.difficulty) / 10;
+
+      if (finalDifficulty == 1) {
+        changeProgessBar();
+        return resetProgressBar();
+      }
+
+      return finalDifficulty;
     } else {
       return 1;
     }
@@ -42,7 +80,7 @@ class _TaskState extends State<Task> {
             height: 140,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.blueAccent,
+              color: handleColor,
             ),
           ),
           Column(
