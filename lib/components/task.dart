@@ -28,7 +28,7 @@ class _TaskState extends State<Task> {
   }
 
   changeProgessBar() {
-    final _random = new Random();
+    final random = Random();
     Color blueColor = Colors.blue;
     Color blackColor = Colors.black;
     Color redColor = Colors.red;
@@ -46,7 +46,7 @@ class _TaskState extends State<Task> {
       brownColor,
       pinkColor,
     ];
-    handleColor = listColors[_random.nextInt(listColors.length)];
+    handleColor = listColors[random.nextInt(listColors.length)];
 
     return handleColor;
   }

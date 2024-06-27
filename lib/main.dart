@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_primeiro_projeto/screens/form_screen.dart';
 import 'package:meu_primeiro_projeto/screens/home_screen.dart';
 
 void main() {
@@ -13,10 +14,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lista de tarefas',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: false,
       ),
-      home: const Home(),
+      home: const FormScreen(),
     );
   }
 }
