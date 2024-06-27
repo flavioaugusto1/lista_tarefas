@@ -28,6 +28,8 @@ class _FormScreenState extends State<FormScreen> {
             color: Colors.black12,
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -58,6 +60,9 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  onChanged: (text) {
+                    setState(() {});
+                  },
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -69,6 +74,7 @@ class _FormScreenState extends State<FormScreen> {
                 ),
               ),
               Container(
+                margin: EdgeInsets.only(bottom: 8),
                 height: 100,
                 width: 72,
                 decoration: BoxDecoration(
@@ -81,6 +87,12 @@ class _FormScreenState extends State<FormScreen> {
                   child: Image.network(
                     taskImageController.text,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        '../assets/images/notfound.webp',
+                        fit: BoxFit.cover,
+                      );
+                    },
                   ),
                 ),
               ),
