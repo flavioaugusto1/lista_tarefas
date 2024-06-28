@@ -21,7 +21,7 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
-  Color handleColor = Colors.blue;
+  Color handleColor = Colors.cyan;
 
   incrementLevel() {
     nivel++;

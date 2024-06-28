@@ -14,10 +14,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Lista de tarefas',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        appBarTheme: const AppBarTheme(color: Colors.cyan),
+        floatingActionButtonTheme:
+            const FloatingActionButtonThemeData(backgroundColor: Colors.cyan),
+        elevatedButtonTheme: const ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(
+              Colors.cyan,
+            ),
+          ),
+        ),
         useMaterial3: false,
       ),
-      home: const FormScreen(),
+      home: const Home(),
     );
   }
 }

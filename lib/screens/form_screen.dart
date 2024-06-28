@@ -131,6 +131,8 @@ class _FormScreenState extends State<FormScreen> {
                             content: Text("Tarefa salva com sucesso"),
                             backgroundColor: Colors.green,
                           ));
+
+                          Navigator.pop(context);
                         }
                       },
                       child: const Text("Adicionar"))
