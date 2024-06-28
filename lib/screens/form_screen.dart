@@ -19,91 +19,93 @@ class _FormScreenState extends State<FormScreen> {
         title: const Text("Nova tarefa"),
       ),
       body: Center(
-        child: Container(
-          height: 850,
-          width: 450,
-          decoration: BoxDecoration(
-            border: Border.all(width: 1, color: Colors.black38),
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.black12,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Escreva o nome da tarefa",
-                    fillColor: Colors.white70,
-                    filled: true,
+        child: SingleChildScrollView(
+          child: Container(
+            height: 850,
+            width: 450,
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.black38),
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.black12,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Escreva o nome da tarefa",
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
+                    controller: taskNameController,
                   ),
-                  controller: taskNameController,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Escreva a dificuldade em números",
-                    fillColor: Colors.white70,
-                    filled: true,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Escreva a dificuldade em números",
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
+                    controller: taskDifficultyController,
                   ),
-                  controller: taskDifficultyController,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TextFormField(
-                  onChanged: (text) {
-                    setState(() {});
-                  },
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Selecione a imagem desejada",
-                    fillColor: Colors.white70,
-                    filled: true,
-                  ),
-                  controller: taskImageController,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(bottom: 8),
-                height: 100,
-                width: 72,
-                decoration: BoxDecoration(
-                  border: Border.all(width: 1, color: Colors.black38),
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.black12,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    taskImageController.text,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(
-                        '../assets/images/notfound.webp',
-                        fit: BoxFit.cover,
-                      );
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    onChanged: (text) {
+                      setState(() {});
                     },
+                    textAlign: TextAlign.center,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Selecione a imagem desejada",
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
+                    controller: taskImageController,
                   ),
                 ),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    print(taskNameController.text);
-                    print(int.parse(taskDifficultyController.text));
-                    print(taskImageController);
-                  },
-                  child: Text("Adicionar"))
-            ],
+                Container(
+                  margin: EdgeInsets.only(bottom: 8),
+                  height: 100,
+                  width: 72,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1, color: Colors.black38),
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.black12,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.network(
+                      taskImageController.text,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          '../assets/images/notfound.webp',
+                          fit: BoxFit.cover,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                    onPressed: () {
+                      print(taskNameController.text);
+                      print(int.parse(taskDifficultyController.text));
+                      print(taskImageController);
+                    },
+                    child: Text("Adicionar"))
+              ],
+            ),
           ),
         ),
       ),
