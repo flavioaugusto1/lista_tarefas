@@ -8,7 +8,7 @@ class Task extends StatefulWidget {
   final String image;
   final int difficulty;
 
-  Task({
+  const Task({
     required this.taskName,
     required this.image,
     required this.difficulty,
@@ -105,7 +105,7 @@ class _TaskState extends State<Task> {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
-                        child: Image.asset(
+                        child: Image.network(
                           widget.image,
                           fit: BoxFit.cover,
                         ),

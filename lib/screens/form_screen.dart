@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:meu_primeiro_projeto/data/task_inherited.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  final BuildContext taskContext;
+  const FormScreen({super.key, required this.taskContext});
 
   @override
   State<FormScreen> createState() => _FormScreenState();
 }
 
 class _FormScreenState extends State<FormScreen> {
-  TextEditingController taskNameController = TextEditingController();
-  TextEditingController taskDifficultyController = TextEditingController();
-  TextEditingController taskImageController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController difficultyController = TextEditingController();
+  TextEditingController imageController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -20,17 +22,17 @@ class _FormScreenState extends State<FormScreen> {
       key: _formKey,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Nova tarefa"),
+          title: const Text('Nova Tarefa'),
         ),
         body: Center(
           child: SingleChildScrollView(
             child: Container(
-              height: 850,
-              width: 450,
+              height: 650,
+              width: 375,
               decoration: BoxDecoration(
-                border: Border.all(width: 1, color: Colors.black38),
-                borderRadius: BorderRadius.circular(10),
                 color: Colors.black12,
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(width: 3),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -39,20 +41,20 @@ class _FormScreenState extends State<FormScreen> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
-                      validator: (value) {
+                      validator: (String? value) {
                         if (value != null && value.isEmpty) {
-                          return 'Você esqueceu de preencher o campo';
+                          return 'Insira o nome da Tarefa';
                         }
                         return null;
                       },
+                      controller: nameController,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Escreva o nome da tarefa",
+                        hintText: 'Nome',
                         fillColor: Colors.white70,
                         filled: true,
                       ),
-                      controller: taskNameController,
                     ),
                   ),
                   Padding(
@@ -62,19 +64,19 @@ class _FormScreenState extends State<FormScreen> {
                         if (value!.isEmpty ||
                             int.parse(value) > 5 ||
                             int.parse(value) < 1) {
-                          return "Insira uma dificuldade entre 1 e 5";
+                          return 'Insira um Dificuldade entre 1 e 5';
                         }
                         return null;
                       },
                       keyboardType: TextInputType.number,
+                      controller: difficultyController,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Escreva a dificuldade em números",
+                        hintText: 'Dificuldade',
                         fillColor: Colors.white70,
                         filled: true,
                       ),
-                      controller: taskDifficultyController,
                     ),
                   ),
                   Padding(
@@ -85,57 +87,58 @@ class _FormScreenState extends State<FormScreen> {
                       },
                       validator: (value) {
                         if (value!.isEmpty) {
-                          return 'Insira uma URL de imagem';
+                          return 'Insira um URL de Imagem!';
                         }
                         return null;
                       },
                       keyboardType: TextInputType.url,
+                      controller: imageController,
                       textAlign: TextAlign.center,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Selecione a imagem desejada",
+                        hintText: 'Imagem',
                         fillColor: Colors.white70,
                         filled: true,
                       ),
-                      controller: taskImageController,
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.only(bottom: 8),
                     height: 100,
                     width: 72,
                     decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.black38),
+                      color: Colors.blue,
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.black12,
+                      border: Border.all(width: 2, color: Colors.blue),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.network(
-                        taskImageController.text,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            '../assets/images/notfound.webp',
-                            fit: BoxFit.cover,
-                          );
+                        imageController.text,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace? stackTrace) {
+                          return Image.asset('assets/images/notfound.webp');
                         },
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context)
-                              .showSnackBar(const SnackBar(
-                            content: Text("Tarefa salva com sucesso"),
-                            backgroundColor: Colors.green,
-                          ));
-
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: const Text("Adicionar"))
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        TaskInherited.of(widget.taskContext).newTask(
+                            nameController.text,
+                            imageController.text,
+                            int.parse(difficultyController.text));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Criando uma nova Tarefa'),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text('Adicionar!'),
+                  ),
                 ],
               ),
             ),
