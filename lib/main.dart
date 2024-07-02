@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meu_primeiro_projeto/data/level_inherited.dart';
 import 'package:meu_primeiro_projeto/data/task_inherited.dart';
 import 'package:meu_primeiro_projeto/screens/home_screen.dart';
 
@@ -12,21 +13,26 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Lista de tarefas',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
-          appBarTheme: const AppBarTheme(color: Colors.cyan),
-          floatingActionButtonTheme:
-              const FloatingActionButtonThemeData(backgroundColor: Colors.cyan),
-          elevatedButtonTheme: const ElevatedButtonThemeData(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(
-                Colors.cyan,
-              ),
+      title: 'Lista de tarefas',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
+        appBarTheme: const AppBarTheme(color: Colors.cyan),
+        floatingActionButtonTheme:
+            const FloatingActionButtonThemeData(backgroundColor: Colors.cyan),
+        elevatedButtonTheme: const ElevatedButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(
+              Colors.cyan,
             ),
           ),
-          useMaterial3: false,
         ),
-        home: TaskInherited(child: const Home()));
+        useMaterial3: false,
+      ),
+      home: LevelInherited(
+        child: TaskInherited(
+          child: const Home(),
+        ),
+      ),
+    );
   }
 }

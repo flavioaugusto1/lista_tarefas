@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/components/difficulty.dart';
+import 'package:meu_primeiro_projeto/data/level_inherited.dart';
 
 class Task extends StatefulWidget {
   final String taskName;
@@ -56,9 +57,13 @@ class _TaskState extends State<Task> {
     return widget.nivel = 0;
   }
 
+  int nivel2 = 0;
   incrementProgressBar() {
     if (widget.difficulty > 0) {
       double finalDifficulty = (widget.nivel / widget.difficulty) / 10;
+
+      LevelInherited.of(context).acumulateOverAllLevel(
+          overallLevel: widget.nivel, difficultyTask: widget.difficulty);
 
       if (finalDifficulty == 1) {
         changeProgessBar();
