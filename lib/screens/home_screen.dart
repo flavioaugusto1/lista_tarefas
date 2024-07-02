@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: ListView(
+          padding: const EdgeInsets.only(top: 10),
           children: TaskInherited.of(context).taskList,
         ),
       ),

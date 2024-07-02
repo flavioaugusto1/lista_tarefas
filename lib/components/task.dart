@@ -8,23 +8,24 @@ class Task extends StatefulWidget {
   final String image;
   final int difficulty;
 
-  const Task({
+  Task({
     required this.taskName,
     required this.image,
     required this.difficulty,
     super.key,
   });
 
+  int nivel = 0;
+
   @override
   State<Task> createState() => _TaskState();
 }
 
 class _TaskState extends State<Task> {
-  int nivel = 0;
   Color handleColor = Colors.cyan;
 
   incrementLevel() {
-    nivel++;
+    widget.nivel++;
   }
 
   changeProgessBar() {
@@ -52,12 +53,12 @@ class _TaskState extends State<Task> {
   }
 
   resetProgressBar() {
-    return nivel = 0;
+    return widget.nivel = 0;
   }
 
   incrementProgressBar() {
     if (widget.difficulty > 0) {
-      double finalDifficulty = (nivel / widget.difficulty) / 10;
+      double finalDifficulty = (widget.nivel / widget.difficulty) / 10;
 
       if (finalDifficulty == 1) {
         changeProgessBar();
@@ -170,7 +171,7 @@ class _TaskState extends State<Task> {
                   Padding(
                     padding: const EdgeInsets.all(10),
                     child: Text(
-                      "Nível: $nivel",
+                      "Nível: ${widget.nivel}",
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
