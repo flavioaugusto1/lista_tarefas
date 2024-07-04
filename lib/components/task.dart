@@ -5,11 +5,13 @@ import 'package:meu_primeiro_projeto/components/difficulty.dart';
 import 'package:meu_primeiro_projeto/data/level_inherited.dart';
 
 class Task extends StatefulWidget {
+  final String id;
   final String taskName;
   final String image;
   final int difficulty;
 
   Task({
+    required this.id,
     required this.taskName,
     required this.image,
     required this.difficulty,
