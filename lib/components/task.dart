@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/components/difficulty.dart';
 import 'package:meu_primeiro_projeto/data/level_inherited.dart';
+import 'package:meu_primeiro_projeto/data/task_dao.dart';
 
 class Task extends StatefulWidget {
   final String id;
@@ -148,6 +149,9 @@ class _TaskState extends State<Task> {
                             setState(() {
                               incrementLevel();
                             });
+                          },
+                          onLongPress: () {
+                            TaskDao().delete(widget.id);
                           },
                           child: const Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

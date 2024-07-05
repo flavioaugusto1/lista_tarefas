@@ -15,7 +15,6 @@ class LevelInherited extends InheritedWidget {
     levelTotal = levelTotal + levelAcumulator;
     levelAcumulator = 0;
     progressBarOverall = progressBarOverall + ((levelTotal / difficulty) / 100);
-    print(progressBarOverall);
   }
 
   void acumulateOverAllLevel({overallLevel, difficultyTask}) {

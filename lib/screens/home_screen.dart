@@ -28,47 +28,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: Container(),
-          title: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Tarefas",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SizedBox(
-                      width: 200,
-                      child: LinearProgressIndicator(
-                        value: LevelInherited.of(context).progressBarOverall,
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "Level: ${LevelInherited.of(context).levelTotal.toStringAsFixed(2)}",
-                    style: const TextStyle(fontSize: 16),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        LevelInherited.of(context).updateOverallLevel();
-                      });
-                    },
-                    child: const Icon(
-                      Icons.refresh,
-                      color: Colors.white,
-                    ),
-                  )
-                ],
-              )
-            ],
-          )),
+        leading: Container(),
+        title: const Text(
+          "Tarefas",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 10),
         child: FutureBuilder<List<Task>>(
@@ -141,7 +108,11 @@ class _HomeState extends State<Home> {
               context,
               MaterialPageRoute(
                 builder: (contextNew) => FormScreen(taskContext: context),
-              ));
+              )).then(
+            (value) => setState(() {
+              print("Recarregando a tela...");
+            }),
+          );
         },
         child: const Icon(Icons.add),
       ),
