@@ -35,6 +35,13 @@ class _HomeState extends State<Home> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                setState(() {});
+              },
+              icon: const Icon(Icons.refresh))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8, bottom: 10),
