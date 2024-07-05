@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meu_primeiro_projeto/components/task.dart';
+import 'package:uuid/uuid.dart';
 
 class TaskInherited extends InheritedWidget {
   TaskInherited({
@@ -7,23 +8,16 @@ class TaskInherited extends InheritedWidget {
     required super.child,
   });
 
-  final List<Task> taskList = [
-    Task(
-        taskName: 'Aprender Flutter',
-        image: 'assets/images/dart.png',
-        difficulty: 3),
-    Task(
-        taskName: 'Andar de Bike',
-        image: 'assets/images/flutter.png',
-        difficulty: 2),
-    Task(
-        taskName: 'Meditar', image: 'assets/images/flutter.png', difficulty: 5),
-    Task(taskName: 'Ler', image: 'assets/images/flutter.png', difficulty: 4),
-    Task(taskName: 'Jogar', image: 'assets/images/flutter.png', difficulty: 1),
-  ];
+  final List<Task> taskList = [];
+  var uuid = const Uuid().v4();
 
   void newTask(String name, String photo, int difficulty) {
-    taskList.add(Task(taskName: name, image: photo, difficulty: difficulty));
+    taskList.add(Task(
+      id: uuid,
+      taskName: name,
+      image: photo,
+      difficulty: difficulty,
+    ));
   }
 
   static TaskInherited of(BuildContext context) {

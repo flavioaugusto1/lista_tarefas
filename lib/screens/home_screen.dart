@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meu_primeiro_projeto/components/task.dart';
 import 'package:meu_primeiro_projeto/data/level_inherited.dart';
+import 'package:meu_primeiro_projeto/data/task_dao.dart';
 import 'package:meu_primeiro_projeto/data/task_inherited.dart';
 import 'package:meu_primeiro_projeto/screens/form_screen.dart';
 
@@ -68,10 +70,69 @@ class _HomeState extends State<Home> {
             ],
           )),
       body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
-          padding: const EdgeInsets.only(top: 10),
-          children: TaskInherited.of(context).taskList,
+        padding: const EdgeInsets.only(top: 8, bottom: 10),
+        child: FutureBuilder<List<Task>>(
+          future: TaskDao().findAll(),
+          builder: (context, snapshot) {
+            List<Task>? items = snapshot.data;
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text("Carregando...")
+                    ],
+                  ),
+                );
+              case ConnectionState.waiting:
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text("Carregando...")
+                    ],
+                  ),
+                );
+              case ConnectionState.active:
+                return const Center(
+                  child: Column(
+                    children: [
+                      CircularProgressIndicator(),
+                      Text("Carregando...")
+                    ],
+                  ),
+                );
+              case ConnectionState.done:
+                print(snapshot);
+                if (snapshot.hasData && items != null) {
+                  if (items.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        final Task task = items[index];
+                        return task;
+                      },
+                    );
+                  }
+                  return const Center(
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.error_outline,
+                          size: 128,
+                        ),
+                        Text(
+                          "Não há tarefas cadastradas.",
+                          style: TextStyle(fontSize: 32),
+                        )
+                      ],
+                    ),
+                  );
+                }
+                return const Text("Erro ao carregar tarefas.");
+            }
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton(

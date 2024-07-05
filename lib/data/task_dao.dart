@@ -45,7 +45,6 @@ class TaskDao {
   Future<List<Task>> findAll() async {
     final Database database = await getDataBase();
     final List<Map<String, dynamic>> result = await database.query(_tablename);
-
     return toList(result);
   }
 
@@ -76,5 +75,9 @@ class TaskDao {
     return toList(result);
   }
 
-  delete(String taskName) async {}
+  delete(String taskName) async {
+    final Database database = await getDataBase();
+    return database
+        .delete(_tablename, where: '$_idTask = ?', whereArgs: [_idTask]);
+  }
 }

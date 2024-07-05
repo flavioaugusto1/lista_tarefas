@@ -11,7 +11,7 @@ class Task extends StatefulWidget {
   final int difficulty;
 
   Task({
-    required this.id,
+    this.id = '',
     required this.taskName,
     required this.image,
     required this.difficulty,
